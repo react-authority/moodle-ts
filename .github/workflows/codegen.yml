@@ -159,6 +159,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
+          # To use GITHUB_TOKEN, enable in repo Settings > Actions > General > 
+          # "Allow GitHub Actions to create and approve pull requests"
+          # Alternatively, use a PAT with 'repo' scope stored as a secret
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: update generated types for Moodle APIs"
           title: "chore: Update Moodle API Types"
@@ -179,3 +182,9 @@ jobs:
           labels: |
             automated
             codegen
+
+      - name: Fallback - Commit directly if PR creation fails
+        if: failure()
+        run: |
+          echo "::warning::Could not create PR. Enable 'Allow GitHub Actions to create and approve pull requests' in repository Settings > Actions > General"
+          echo "Changes have been built but not committed. Run workflow manually or enable PR creation."
