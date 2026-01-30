@@ -44,7 +44,7 @@ function schemaTypeToTS(schema, indent = 0) {
     }
     case "object": {
       if (!schema.properties || Object.keys(schema.properties).length === 0) {
-        return "Record<string, unknown>";
+        return "Record<string, never>";
       }
       const requiredFields = new Set(schema.required || []);
       const props = Object.entries(schema.properties)
@@ -159,7 +159,7 @@ import type * as Types from "./types.js";
     code += `  client: MoodleClient,\n`;
     code += `  params: Types.${paramsTypeName}\n`;
     code += `): Promise<CallResult<Types.${returnsTypeName}>> {\n`;
-    code += `  return client.call<Types.${paramsTypeName}, Types.${returnsTypeName}>("${name}", params);\n`;
+    code += `  return client.call("${name}", params as Record<string, unknown>) as Promise<CallResult<Types.${returnsTypeName}>>;\n`;
     code += `}\n\n`;
   }
 

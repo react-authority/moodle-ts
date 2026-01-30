@@ -79,11 +79,11 @@ export class MoodleClient {
    * @param params - The parameters to pass to the function
    * @returns The typed response from Moodle
    */
-  async call<TParams extends SerializableParams, TResult>(
+  async call<TParams extends Record<string, unknown>, TResult>(
     wsfunction: string,
     params: TParams = {} as TParams
   ): Promise<CallResult<TResult>> {
-    return call<TParams, TResult>(wsfunction, params, {
+    return call<SerializableParams, TResult>(wsfunction, params as SerializableParams, {
       baseUrl: this.config.baseUrl,
       token: this.config.token,
       timeout: this.config.timeout,
