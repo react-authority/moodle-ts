@@ -1,6 +1,6 @@
 {
   "name": "moodle-ts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Type-safe TypeScript SDK for Moodle Web Services API",
   "type": "module",
   "main": "./dist/index.js",
@@ -26,8 +26,9 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "codegen": "node scripts/codegen.mjs",
+    "openapi": "node scripts/generate-openapi.mjs",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist openapi",
     "prepublishOnly": "npm run build",
     "changeset": "changeset",
     "version": "changeset version",
@@ -41,7 +42,7 @@
     "lms",
     "web-services"
   ],
-  "author": "",
+  "author": "React Authority",
   "license": "MIT",
   "repository": {
     "type": "git",

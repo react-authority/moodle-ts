@@ -125,7 +125,8 @@ Types are automatically generated from Moodle's source code using a CI workflow:
 
 1. **Schema Extraction**: A PHP script runs inside each supported Moodle version to extract function metadata using Moodle's `external_api` introspection
 2. **Code Generation**: A Node.js script converts the JSON schemas into TypeScript types and typed function wrappers
-3. **Automated PRs**: Changes are submitted as pull requests for review
+3. **OpenAPI Generation**: An OpenAPI 3.1 spec is also generated for use with other tools
+4. **Automated PRs**: Changes are submitted as pull requests for review
 
 To regenerate types manually:
 
@@ -133,6 +134,19 @@ To regenerate types manually:
 # After placing schema JSON files in schemas/
 npm run codegen
 npm run build
+```
+
+## OpenAPI
+
+This project also generates OpenAPI 3.1 specs that can be used with other code generators.
+
+```bash
+# Generate OpenAPI specs
+npm run openapi
+
+# Files are output to:
+#   openapi/MOODLE_405_STABLE.json
+#   openapi/MOODLE_405_STABLE.yaml
 ```
 
 ## Development
@@ -146,6 +160,9 @@ npm run build
 
 # Type check
 npm run typecheck
+
+# Generate OpenAPI specs
+npm run openapi
 
 # Run code generation
 npm run codegen
