@@ -4,11 +4,11 @@ Type-safe TypeScript SDK for Moodle Web Services API with auto-generated types.
 
 ## Features
 
-- 🔒 **Type-safe** - Full TypeScript support with generated types for all Moodle Web Service functions
-- 🔄 **Auto-generated** - Types are automatically generated from Moodle source code
-- 📦 **Versioned** - Support multiple Moodle versions via subpath imports
-- 🚀 **Modern** - ESM-first, works with Node.js 18+
-- 🪶 **Lightweight** - Zero runtime dependencies
+- **Type-safe** - Full TypeScript support with generated types for all Moodle Web Service functions
+- **Auto-generated** - Types are automatically generated from Moodle source code
+- **Versioned** - Support multiple Moodle versions via subpath imports
+- **Modern** - ESM-first, works with Node.js 18+
+- **Lightweight** - Zero runtime dependencies
 
 ## Installation
 
