@@ -50,6 +50,7 @@ jobs:
           php-version: "8.2"
           extensions: pgsql, zip, gd, intl, soap, opcache, xmlrpc
           coverage: none
+          ini-values: max_input_vars=5000
 
       - name: Clone Moodle
         run: |
