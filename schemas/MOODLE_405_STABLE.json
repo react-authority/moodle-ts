@@ -1,0 +1,396 @@
+{
+  "moodleVersion": "2024042200",
+  "moodleRelease": "4.5 (Build: 20241101)",
+  "generatedAt": "2026-01-29T00:00:00Z",
+  "functions": [
+    {
+      "name": "core_webservice_get_site_info",
+      "classname": "core_external",
+      "methodname": "get_site_info",
+      "description": "Return some site info / user info / list web service functions",
+      "type": "read",
+      "ajax": true,
+      "loginrequired": true,
+      "readonlysession": true,
+      "capabilities": "",
+      "services": [
+        { "shortname": "moodle_mobile_app", "name": "Moodle mobile web service" }
+      ],
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "serviceshortnames": {
+            "type": "array",
+            "description": "List of service shortnames",
+            "items": {
+              "type": "string",
+              "description": "Service shortname"
+            }
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "sitename": { "type": "string", "description": "Site name" },
+          "username": { "type": "string", "description": "Username" },
+          "firstname": { "type": "string", "description": "First name" },
+          "lastname": { "type": "string", "description": "Last name" },
+          "fullname": { "type": "string", "description": "User full name" },
+          "lang": { "type": "string", "description": "Current language" },
+          "userid": { "type": "integer", "description": "User id" },
+          "siteurl": { "type": "string", "description": "Site url" },
+          "userpictureurl": { "type": "string", "description": "The user profile picture URL" },
+          "functions": {
+            "type": "array",
+            "description": "Functions that are available",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "description": "Function name" },
+                "version": { "type": "string", "description": "The version number of the component" }
+              },
+              "required": ["name", "version"]
+            }
+          },
+          "downloadfiles": { "type": "integer", "description": "1 if users can download files, 0 otherwise" },
+          "uploadfiles": { "type": "integer", "description": "1 if users can upload files, 0 otherwise" },
+          "release": { "type": "string", "description": "Moodle release number" },
+          "version": { "type": "string", "description": "Moodle version number" },
+          "mobilecssurl": { "type": "string", "description": "Mobile custom CSS theme" },
+          "advancedfeatures": {
+            "type": "array",
+            "description": "Advanced features availability",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "description": "Feature name" },
+                "value": { "type": "integer", "description": "Feature value" }
+              },
+              "required": ["name", "value"]
+            }
+          }
+        },
+        "required": ["sitename", "username", "firstname", "lastname", "fullname", "lang", "userid", "siteurl", "userpictureurl", "functions", "release", "version"]
+      }
+    },
+    {
+      "name": "core_course_get_courses",
+      "classname": "core_course_external",
+      "methodname": "get_courses",
+      "description": "Return course details",
+      "type": "read",
+      "ajax": true,
+      "loginrequired": true,
+      "readonlysession": true,
+      "capabilities": "moodle/course:view, moodle/course:viewhiddencourses",
+      "services": [
+        { "shortname": "moodle_mobile_app", "name": "Moodle mobile web service" }
+      ],
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "type": "object",
+            "description": "Options for filtering courses",
+            "properties": {
+              "ids": {
+                "type": "array",
+                "description": "List of course IDs. If empty, all courses will be returned",
+                "items": { "type": "integer", "description": "Course ID" }
+              }
+            },
+            "required": []
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "array",
+        "description": "List of courses",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "integer", "description": "Course ID" },
+            "shortname": { "type": "string", "description": "Course short name" },
+            "fullname": { "type": "string", "description": "Course full name" },
+            "displayname": { "type": "string", "description": "Course display name" },
+            "categoryid": { "type": "integer", "description": "Category ID" },
+            "summary": { "type": "string", "description": "Course summary" },
+            "summaryformat": { "type": "integer", "description": "Summary format (1 = HTML, 0 = MOODLE, etc)" },
+            "format": { "type": "string", "description": "Course format" },
+            "startdate": { "type": "integer", "description": "Course start date (timestamp)" },
+            "enddate": { "type": "integer", "description": "Course end date (timestamp)" },
+            "visible": { "type": "integer", "description": "1 if visible, 0 otherwise" },
+            "lang": { "type": "string", "description": "Forced course language" },
+            "timecreated": { "type": "integer", "description": "Timestamp when the course was created" },
+            "timemodified": { "type": "integer", "description": "Timestamp when the course was modified" }
+          },
+          "required": ["id", "shortname", "fullname", "categoryid"]
+        }
+      }
+    },
+    {
+      "name": "core_user_get_users",
+      "classname": "core_user_external",
+      "methodname": "get_users",
+      "description": "Search for users matching the parameters",
+      "type": "read",
+      "ajax": false,
+      "loginrequired": true,
+      "readonlysession": true,
+      "capabilities": "moodle/user:viewdetails, moodle/user:viewhiddendetails",
+      "services": [],
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "criteria": {
+            "type": "array",
+            "description": "The search criteria",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": { "type": "string", "description": "The search key (id, lastname, firstname, idnumber, username, email)" },
+                "value": { "type": "string", "description": "The value to search" }
+              },
+              "required": ["key", "value"]
+            }
+          }
+        },
+        "required": ["criteria"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "description": "List of users",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "integer", "description": "User ID" },
+                "username": { "type": "string", "description": "Username" },
+                "firstname": { "type": "string", "description": "First name" },
+                "lastname": { "type": "string", "description": "Last name" },
+                "fullname": { "type": "string", "description": "Full name" },
+                "email": { "type": "string", "description": "Email address" },
+                "department": { "type": "string", "description": "Department" },
+                "institution": { "type": "string", "description": "Institution" },
+                "suspended": { "type": "boolean", "description": "Suspend user account" },
+                "confirmed": { "type": "boolean", "description": "Is the user confirmed" },
+                "lang": { "type": "string", "description": "Language code" },
+                "theme": { "type": "string", "description": "Theme name" },
+                "timezone": { "type": "string", "description": "Timezone" },
+                "profileimageurlsmall": { "type": "string", "description": "User small profile image URL" },
+                "profileimageurl": { "type": "string", "description": "User profile image URL" }
+              },
+              "required": ["id", "username", "firstname", "lastname", "email"]
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": { "type": "string", "description": "Item is always key" },
+                "itemid": { "type": "integer", "description": "Item id is always id of the search key" },
+                "warningcode": { "type": "string", "description": "The warning code" },
+                "message": { "type": "string", "description": "The warning message" }
+              },
+              "required": ["warningcode", "message"]
+            }
+          }
+        },
+        "required": ["users"]
+      }
+    },
+    {
+      "name": "core_enrol_get_enrolled_users",
+      "classname": "core_enrol_external",
+      "methodname": "get_enrolled_users",
+      "description": "Get enrolled users by course id",
+      "type": "read",
+      "ajax": true,
+      "loginrequired": true,
+      "readonlysession": true,
+      "capabilities": "moodle/course:viewparticipants",
+      "services": [
+        { "shortname": "moodle_mobile_app", "name": "Moodle mobile web service" }
+      ],
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "courseid": { "type": "integer", "description": "Course ID", "required": true },
+          "options": {
+            "type": "array",
+            "description": "Option names and values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "description": "Option name (limitfrom, limitnumber, sortby, sortdirection, userfields)" },
+                "value": { "type": "string", "description": "Option value" }
+              },
+              "required": ["name", "value"]
+            }
+          }
+        },
+        "required": ["courseid"]
+      },
+      "returns": {
+        "type": "array",
+        "description": "List of enrolled users",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "integer", "description": "User ID" },
+            "username": { "type": "string", "description": "Username" },
+            "firstname": { "type": "string", "description": "First name" },
+            "lastname": { "type": "string", "description": "Last name" },
+            "fullname": { "type": "string", "description": "Full name" },
+            "email": { "type": "string", "description": "Email address" },
+            "profileimageurl": { "type": "string", "description": "User profile image URL" },
+            "profileimageurlsmall": { "type": "string", "description": "User small profile image URL" },
+            "roles": {
+              "type": "array",
+              "description": "User roles",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "roleid": { "type": "integer", "description": "Role ID" },
+                  "name": { "type": "string", "description": "Role name" },
+                  "shortname": { "type": "string", "description": "Role shortname" },
+                  "sortorder": { "type": "integer", "description": "Role sortorder" }
+                },
+                "required": ["roleid", "name", "shortname", "sortorder"]
+              }
+            },
+            "groups": {
+              "type": "array",
+              "description": "User groups",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer", "description": "Group ID" },
+                  "name": { "type": "string", "description": "Group name" },
+                  "description": { "type": "string", "description": "Group description" }
+                },
+                "required": ["id", "name"]
+              }
+            },
+            "enrolledcourses": {
+              "type": "array",
+              "description": "Enrolled courses",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer", "description": "Course ID" },
+                  "fullname": { "type": "string", "description": "Course fullname" },
+                  "shortname": { "type": "string", "description": "Course shortname" }
+                },
+                "required": ["id", "fullname", "shortname"]
+              }
+            }
+          },
+          "required": ["id", "username", "firstname", "lastname", "fullname", "email"]
+        }
+      }
+    },
+    {
+      "name": "mod_assign_get_assignments",
+      "classname": "mod_assign_external",
+      "methodname": "get_assignments",
+      "description": "Returns the courses and assignments for the users capability",
+      "type": "read",
+      "ajax": true,
+      "loginrequired": true,
+      "readonlysession": true,
+      "capabilities": "",
+      "services": [
+        { "shortname": "moodle_mobile_app", "name": "Moodle mobile web service" }
+      ],
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "courseids": {
+            "type": "array",
+            "description": "0 or more course ids. If none, all assignments that the user can view are returned",
+            "items": { "type": "integer", "description": "Course ID" }
+          },
+          "capabilities": {
+            "type": "array",
+            "description": "Filter by capabilities",
+            "items": { "type": "string", "description": "Capability" }
+          },
+          "includenotenrolledcourses": {
+            "type": "boolean",
+            "description": "Whether to return courses that the user can see but is not enrolled in"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "courses": {
+            "type": "array",
+            "description": "List of courses",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "integer", "description": "Course ID" },
+                "fullname": { "type": "string", "description": "Course full name" },
+                "shortname": { "type": "string", "description": "Course short name" },
+                "timemodified": { "type": "integer", "description": "Last time modified" },
+                "assignments": {
+                  "type": "array",
+                  "description": "List of assignments",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer", "description": "Assignment ID" },
+                      "cmid": { "type": "integer", "description": "Course module ID" },
+                      "course": { "type": "integer", "description": "Course ID" },
+                      "name": { "type": "string", "description": "Assignment name" },
+                      "nosubmissions": { "type": "integer", "description": "No submissions" },
+                      "submissiondrafts": { "type": "integer", "description": "Submissions drafts enabled" },
+                      "sendnotifications": { "type": "integer", "description": "Send notifications" },
+                      "sendlatenotifications": { "type": "integer", "description": "Send late notifications" },
+                      "sendstudentnotifications": { "type": "integer", "description": "Send notifications to students" },
+                      "duedate": { "type": "integer", "description": "Due date (timestamp)" },
+                      "allowsubmissionsfromdate": { "type": "integer", "description": "Allow submissions from date" },
+                      "grade": { "type": "integer", "description": "Grade type" },
+                      "timemodified": { "type": "integer", "description": "Last time modified" },
+                      "cutoffdate": { "type": "integer", "description": "Cut-off date (timestamp)" },
+                      "gradingduedate": { "type": "integer", "description": "Grading due date (timestamp)" },
+                      "intro": { "type": "string", "description": "Assignment intro/description" },
+                      "introformat": { "type": "integer", "description": "Intro format" }
+                    },
+                    "required": ["id", "cmid", "course", "name"]
+                  }
+                }
+              },
+              "required": ["id", "fullname", "shortname", "assignments"]
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "description": "List of warnings",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": { "type": "string" },
+                "itemid": { "type": "integer" },
+                "warningcode": { "type": "string", "description": "The warning code" },
+                "message": { "type": "string", "description": "The warning message" }
+              },
+              "required": ["warningcode", "message"]
+            }
+          }
+        },
+        "required": ["courses"]
+      }
+    }
+  ]
+}

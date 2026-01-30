@@ -1,0 +1,54 @@
+{
+  "name": "moodle-ts",
+  "version": "0.1.0",
+  "description": "Type-safe TypeScript SDK for Moodle Web Services API",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./moodle/MOODLE_405_STABLE": {
+      "types": "./dist/generated/MOODLE_405_STABLE/index.d.ts",
+      "import": "./dist/generated/MOODLE_405_STABLE/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "codegen": "node scripts/codegen.mjs",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish"
+  },
+  "keywords": [
+    "moodle",
+    "typescript",
+    "sdk",
+    "api",
+    "lms",
+    "web-services"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-authority/moodle-ts.git"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
