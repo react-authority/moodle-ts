@@ -1,6 +1,6 @@
 {
   "name": "moodle-ts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Type-safe TypeScript SDK for Moodle Web Services API",
   "type": "module",
   "main": "./dist/index.js",
