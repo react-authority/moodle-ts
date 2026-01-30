@@ -13,6 +13,10 @@
     "./moodle/MOODLE_405_STABLE": {
       "types": "./dist/generated/MOODLE_405_STABLE/index.d.ts",
       "import": "./dist/generated/MOODLE_405_STABLE/index.js"
+    },
+    "./moodle/MOODLE_500_STABLE": {
+      "types": "./dist/generated/MOODLE_500_STABLE/index.d.ts",
+      "import": "./dist/generated/MOODLE_500_STABLE/index.js"
     }
   },
   "files": [
