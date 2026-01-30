@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAPI Explorer - moodle-ts</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">
+  <style>
+    body {
+      margin: 0;
+    }
+    .topbar {
+      display: none;
+    }
+    .swagger-ui .info {
+      margin: 20px 0;
+    }
+    .version-select {
+      background: #1f2937;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .version-select label {
+      color: #f8fafc;
+      font-family: sans-serif;
+    }
+    .version-select select {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: #f8fafc;
+      font-size: 14px;
+    }
+    .version-select a {
+      color: #f98012;
+      text-decoration: none;
+      margin-left: auto;
+      font-family: sans-serif;
+    }
+    .version-select a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="version-select">
+    <label for="version">Moodle Version:</label>
+    <select id="version" onchange="loadSpec(this.value)">
+      <option value="MOODLE_405_STABLE">Moodle 4.5 (MOODLE_405_STABLE)</option>
+      <option value="MOODLE_500_STABLE">Moodle 5.0 (MOODLE_500_STABLE)</option>
+    </select>
+    <a href="../">← Back to Docs</a>
+  </div>
+  <div id="swagger-ui"></div>
+
+  <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+  <script>
+    function loadSpec(version) {
+      window.ui = SwaggerUIBundle({
+        url: `../specs/${version}.json`,
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+        defaultModelsExpandDepth: 1,
+        defaultModelExpandDepth: 1,
+        docExpansion: "list",
+        filter: true,
+        showExtensions: true,
+      });
+    }
+
+    // Load default version
+    window.onload = function() {
+      loadSpec('MOODLE_405_STABLE');
+    };
+  </script>
+</body>
+</html>

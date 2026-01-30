@@ -34,3 +34,7 @@ coverage/
 # Temporary files
 tmp/
 temp/
+
+# Generated docs (built in CI)
+docs-site/api/
+docs-site/specs/

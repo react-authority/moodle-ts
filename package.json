@@ -1,6 +1,6 @@
 {
   "name": "moodle-ts",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Type-safe TypeScript SDK for Moodle Web Services API",
   "type": "module",
   "main": "./dist/index.js",
@@ -27,8 +27,9 @@
     "dev": "tsup --watch",
     "codegen": "node scripts/codegen.mjs",
     "openapi": "node scripts/generate-openapi.mjs",
+    "docs": "typedoc",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist openapi",
+    "clean": "rm -rf dist openapi docs-site/api",
     "prepublishOnly": "npm run build",
     "changeset": "changeset",
     "version": "changeset version",
@@ -51,6 +52,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "tsup": "^8.0.1",
+    "typedoc": "^0.28.16",
     "typescript": "^5.3.3"
   },
   "engines": {

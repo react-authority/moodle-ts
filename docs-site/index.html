@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>moodle-ts - TypeScript SDK for Moodle</title>
+  <style>
+    :root {
+      --primary: #f98012;
+      --primary-dark: #d66a0a;
+      --bg: #0d1117;
+      --bg-secondary: #161b22;
+      --text: #c9d1d9;
+      --text-muted: #8b949e;
+      --border: #30363d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 span {
+      color: var(--primary);
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--primary);
+    }
+    
+    .features {
+      padding: 80px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    
+    .feature {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    
+    .feature h3 {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .feature p {
+      color: var(--text-muted);
+    }
+    
+    .code-block {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 40px auto;
+      max-width: 700px;
+      overflow-x: auto;
+    }
+    
+    .code-block pre {
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+    }
+    
+    .code-block .comment { color: #8b949e; }
+    .code-block .keyword { color: #ff7b72; }
+    .code-block .string { color: #a5d6ff; }
+    .code-block .function { color: #d2a8ff; }
+    .code-block .variable { color: #ffa657; }
+    
+    .cards {
+      padding: 40px 20px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    
+    .card h3 {
+      margin-bottom: 8px;
+    }
+    
+    .card p {
+      color: var(--text-muted);
+    }
+    
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    
+    footer a {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="/" class="logo">moodle-ts</a>
+      <ul class="nav-links">
+        <li><a href="./api/">API Reference</a></li>
+        <li><a href="./openapi/">OpenAPI Explorer</a></li>
+        <li><a href="https://github.com/react-authority/moodle-ts">GitHub</a></li>
+        <li><a href="https://www.npmjs.com/package/moodle-ts">npm</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Type-safe <span>Moodle</span> SDK</h1>
+      <p>A TypeScript SDK for Moodle Web Services with auto-generated types for every API function.</p>
+      <div class="buttons">
+        <a href="./api/" class="btn btn-primary">
+          📚 API Reference
+        </a>
+        <a href="./openapi/" class="btn btn-secondary">
+          🔍 OpenAPI Explorer
+        </a>
+        <a href="https://github.com/react-authority/moodle-ts" class="btn btn-secondary">
+          ⭐ GitHub
+        </a>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="code-block">
+        <pre><span class="keyword">import</span> { MoodleClient } <span class="keyword">from</span> <span class="string">"moodle-ts"</span>;
+
+<span class="keyword">const</span> client = <span class="keyword">new</span> <span class="function">MoodleClient</span>({
+  baseUrl: <span class="string">"https://moodle.example.com"</span>,
+  token: <span class="string">"your-token"</span>,
+});
+
+<span class="comment">// Fully typed API calls</span>
+<span class="keyword">const</span> { data } = <span class="keyword">await</span> client.<span class="function">getSiteInfo</span>();
+console.<span class="function">log</span>(<span class="string">`Connected to </span><span class="variable">${data.sitename}</span><span class="string">`</span>);</pre>
+      </div>
+    </div>
+
+    <section class="features container">
+      <div class="feature">
+        <h3>🔒 Type-Safe</h3>
+        <p>Full TypeScript support with generated types for all 400+ Moodle Web Service functions.</p>
+      </div>
+      <div class="feature">
+        <h3>🔄 Auto-Generated</h3>
+        <p>Types are automatically extracted from Moodle source code and updated weekly.</p>
+      </div>
+      <div class="feature">
+        <h3>📦 Versioned</h3>
+        <p>Support multiple Moodle versions via subpath imports. Pin to your exact version.</p>
+      </div>
+      <div class="feature">
+        <h3>🚀 Modern</h3>
+        <p>ESM-first, tree-shakeable, works with Node.js 18+ and modern bundlers.</p>
+      </div>
+      <div class="feature">
+        <h3>🪶 Lightweight</h3>
+        <p>Zero runtime dependencies. Just fetch and TypeScript types.</p>
+      </div>
+      <div class="feature">
+        <h3>📖 OpenAPI</h3>
+        <p>Includes OpenAPI 3.1 specs for use with other code generators.</p>
+      </div>
+    </section>
+
+    <section class="cards container">
+      <a href="./api/" class="card">
+        <h3>📚 API Reference</h3>
+        <p>Auto-generated TypeDoc documentation for all exported types and functions.</p>
+      </a>
+      <a href="./openapi/" class="card">
+        <h3>🔍 OpenAPI Explorer</h3>
+        <p>Interactive Swagger UI to explore all Moodle Web Service endpoints.</p>
+      </a>
+      <a href="https://github.com/react-authority/moodle-ts/tree/main/examples" class="card">
+        <h3>💡 Examples</h3>
+        <p>Code examples for common use cases like courses, users, and assignments.</p>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Built with ❤️ by <a href="https://github.com/react-authority">React Authority</a> •
+      <a href="https://github.com/react-authority/moodle-ts/blob/main/LICENSE">MIT License</a>
+    </p>
+  </footer>
+</body>
+</html>
